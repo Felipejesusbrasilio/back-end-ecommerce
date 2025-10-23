@@ -9,7 +9,7 @@ const rota = require('./router/rotas');
 
 // Configuração do CORS para permitir cookies entre domínios
 app.use(cors({
-  origin: 'http://localhost:3000',  // Permite o frontend
+  origin: 'https://front-e1df96fjb-felipejesusbrasilios-projects.vercel.app/',  // Permite o frontend
   credentials: true,  // Permite o envio de cookies de sessão
 }));
 
