@@ -8,9 +8,20 @@ const port = process.env.PORT || 5000;
 const rota = require('./router/rotas');
 
 // Configuração do CORS para permitir cookies entre domínios
+const allowedOrigins = [
+  'https://front-end-two-ebon.vercel.app',
+  'http://localhost:3000'
+];
+
 app.use(cors({
-  origin: 'https://front-end-two-ebon.vercel.app/',  // Permite o frontend
-  credentials: true,  // Permite o envio de cookies de sessão
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
 }));
 
 // Configuração do cookie-parser (deve vir antes de 'express-session')
